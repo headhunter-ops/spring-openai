@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-ai
+  ai:
+    openai:
+      api-key:
+      chat:
+        options:
+          model: gpt-4o
