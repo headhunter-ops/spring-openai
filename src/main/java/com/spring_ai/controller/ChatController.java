@@ -1,5 +1,7 @@
 package com.spring_ai.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.spring_ai.payload.CricketResponse;
 import com.spring_ai.service.ChatService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,5 +29,11 @@ public class ChatController {
     public ResponseEntity<Flux<String>> streamingResponse(@RequestParam(value = "inputText") String inputText){
         Flux<String> streamResponse= chatService.streamResponse(inputText);
         return ResponseEntity.ok(streamResponse);
+    }
+
+    @GetMapping("/cricketbot")
+    public ResponseEntity<CricketResponse> getCricketResponse(@RequestParam("inputText") String inputText) throws JsonProcessingException {
+        CricketResponse cricketResponse = chatService.generateCricketResponse(inputText);
+        return ResponseEntity.ok(cricketResponse);
     }
 }
